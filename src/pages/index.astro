@@ -84,7 +84,7 @@ import ModelComparator from '../components/ModelComparator';
           </svg>
         </div>
         <h3 class="text-lg font-semibold mb-2">10 Free Models</h3>
-        <p class="text-sm text-text-secondary leading-relaxed">Llama, Mistral, DeepSeek, Qwen, Gemma, Phi and many more. All the latest open-source models.</p>
+        <p class="text-sm text-text-secondary leading-relaxed">Gemma, Llama, Mistral, Nemotron, Qwen, Trinity, GLM and more. 10 free open-source models.</p>
       </div>
     </div>
   </section>
@@ -98,16 +98,16 @@ import ModelComparator from '../components/ModelComparator';
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
       {[
-        { name: "Qwen3 Next 80B", provider: "Alibaba", category: "General" },
-        { name: "Qwen3 Coder 480B", provider: "Alibaba", category: "Coding" },
-        { name: "Hermes 3 405B", provider: "Nous Research", category: "General" },
-        { name: "Llama 3.3 70B", provider: "Meta", category: "General" },
-        { name: "Step 3.5 Flash", provider: "StepFun", category: "Fast" },
         { name: "Gemma 3 27B", provider: "Google", category: "Efficient" },
-        { name: "Mistral Small 24B", provider: "Mistral AI", category: "Multilingual" },
+        { name: "Gemma 3 12B", provider: "Google", category: "Fast" },
         { name: "Nemotron 30B", provider: "NVIDIA", category: "Reasoning" },
-        { name: "GPT-OSS 120B", provider: "OpenAI", category: "General" },
+        { name: "Nemotron 9B", provider: "NVIDIA", category: "Fast" },
+        { name: "Trinity Large 400B", provider: "Arcee AI", category: "General" },
+        { name: "Trinity Mini", provider: "Arcee AI", category: "Efficient" },
         { name: "GLM 4.5 Air", provider: "Zhipu AI", category: "Agent" },
+        { name: "Llama 3.3 70B", provider: "Meta", category: "General" },
+        { name: "Mistral Small 24B", provider: "Mistral AI", category: "Multilingual" },
+        { name: "Qwen3 Next 80B", provider: "Alibaba", category: "General" },
       ].map((model) => (
         <div class="glass-card rounded-xl p-4">
           <h3 class="text-sm font-semibold">{model.name}</h3>
