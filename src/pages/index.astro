@@ -49,6 +49,9 @@ import ModelComparator from '../components/ModelComparator';
     </div>
   </section>
 
+  <!-- Section Divider -->
+  <div class="mx-auto max-w-4xl px-8"><div class="section-divider"></div></div>
+
   <!-- Features Section -->
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
@@ -89,34 +92,53 @@ import ModelComparator from '../components/ModelComparator';
     </div>
   </section>
 
+  <!-- Section Divider -->
+  <div class="mx-auto max-w-4xl px-8"><div class="section-divider"></div></div>
+
   <!-- Models Section -->
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold">Available Models</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold">Available <span class="gradient-text">Models</span></h2>
       <p class="mt-4 text-text-secondary">All models are free to use. Powered by open-source AI.</p>
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
       {[
-        { name: "Gemma 3 27B", provider: "Google", category: "Efficient" },
-        { name: "Gemma 3 12B", provider: "Google", category: "Fast" },
-        { name: "Nemotron 30B", provider: "NVIDIA", category: "Reasoning" },
-        { name: "Nemotron 9B", provider: "NVIDIA", category: "Fast" },
-        { name: "Trinity Large 400B", provider: "Arcee AI", category: "General" },
-        { name: "Trinity Mini", provider: "Arcee AI", category: "Efficient" },
-        { name: "GLM 4.5 Air", provider: "Zhipu AI", category: "Agent" },
-        { name: "Llama 3.3 70B", provider: "Meta", category: "General" },
-        { name: "Mistral Small 24B", provider: "Mistral AI", category: "Multilingual" },
-        { name: "Qwen3 Next 80B", provider: "Alibaba", category: "General" },
+        { name: "Gemma 3 27B", provider: "Google", color: "#34A853", category: "Efficient", params: "27B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>` },
+        { name: "Gemma 3 12B", provider: "Google", color: "#0F9D58", category: "Fast", params: "12B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>` },
+        { name: "Nemotron 30B", provider: "NVIDIA", color: "#76B900", category: "Reasoning", params: "30B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.948 8.798v-1.43a6.7 6.7 0 01.424-.018c3.922-.124 6.417 3.396 6.417 3.396s-2.728 3.882-5.63 3.882c-.428 0-.837-.066-1.211-.196v-4.238l-.002-.004c-1.728.142-2.063 1.386-2.063 1.386l-2.07-1.722S6.49 7.9 8.948 8.798zm0 7.424v.89a10.478 10.478 0 01-4.107-1.291l.764-.877s1.474.86 3.343 1.054v.224zm0-5.478v1.632c-.953-.146-1.47.65-1.47.65l-1.26-.93s.878-1.499 2.73-1.352zm5.652 1.4s-1.726 2.632-4.441 2.874v.862c3.66-.324 6.794-3.736 6.794-3.736s-1.804-3.636-5.377-4.384v.934c2.334.538 3.024 3.45 3.024 3.45zM22 2v20H2V2h20zm-1.2 1.2H3.2v17.6h17.6V3.2z"/></svg>` },
+        { name: "Nemotron 9B", provider: "NVIDIA", color: "#8DC63F", category: "Fast", params: "9B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.948 8.798v-1.43a6.7 6.7 0 01.424-.018c3.922-.124 6.417 3.396 6.417 3.396s-2.728 3.882-5.63 3.882c-.428 0-.837-.066-1.211-.196v-4.238l-.002-.004c-1.728.142-2.063 1.386-2.063 1.386l-2.07-1.722S6.49 7.9 8.948 8.798zm0 7.424v.89a10.478 10.478 0 01-4.107-1.291l.764-.877s1.474.86 3.343 1.054v.224zm0-5.478v1.632c-.953-.146-1.47.65-1.47.65l-1.26-.93s.878-1.499 2.73-1.352zm5.652 1.4s-1.726 2.632-4.441 2.874v.862c3.66-.324 6.794-3.736 6.794-3.736s-1.804-3.636-5.377-4.384v.934c2.334.538 3.024 3.45 3.024 3.45zM22 2v20H2V2h20zm-1.2 1.2H3.2v17.6h17.6V3.2z"/></svg>` },
+        { name: "Trinity Large", provider: "Arcee AI", color: "#E74C3C", category: "General", params: "400B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 19h20L12 2zm0 4l6.93 12H5.07L12 6z"/><path d="M12 10l3 6H9l3-6z"/></svg>` },
+        { name: "Trinity Mini", provider: "Arcee AI", color: "#FF6B6B", category: "Efficient", params: "", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 19h20L12 2zm0 4l6.93 12H5.07L12 6z"/><path d="M12 10l3 6H9l3-6z"/></svg>` },
+        { name: "GLM 4.5 Air", provider: "Zhipu AI", color: "#00BCF2", category: "Agent", params: "", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v3H8.5l11 10H20v3H4v-3h11L4.5 7H4V4z"/></svg>` },
+        { name: "Llama 3.3 70B", provider: "Meta", color: "#0668E1", category: "General", params: "70B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a4.892 4.892 0 00.684 1.59c.34.473.77.856 1.31 1.104.541.249 1.199.37 1.937.37 1.166 0 2.177-.452 3.126-1.263.948-.811 1.86-2.03 2.763-3.623l.373-.658.373.658c.903 1.593 1.815 2.812 2.763 3.623.949.811 1.96 1.263 3.126 1.263.738 0 1.396-.121 1.937-.37.54-.248.97-.63 1.31-1.104.339-.472.562-1.016.684-1.59.14-.604.21-1.267.21-1.973 0-2.566-.704-5.24-2.044-7.303C17.698 5.31 15.983 4.03 14.015 4.03c-1.166 0-2.177.452-3.126 1.263-.315.27-.618.575-.909.914a10.42 10.42 0 00-.909-.914C8.122 4.482 7.111 4.03 6.915 4.03z"/></svg>` },
+        { name: "Mistral Small", provider: "Mistral AI", color: "#FF7000", category: "Multilingual", params: "24B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="3" width="4" height="4"/><rect x="19" y="3" width="4" height="4"/><rect x="1" y="10" width="4" height="4"/><rect x="7" y="10" width="4" height="4"/><rect x="13" y="10" width="4" height="4"/><rect x="19" y="10" width="4" height="4"/><rect x="1" y="17" width="4" height="4"/><rect x="19" y="17" width="4" height="4"/><rect x="7" y="3" width="4" height="4" opacity="0.6"/><rect x="13" y="3" width="4" height="4" opacity="0.4"/><rect x="7" y="17" width="4" height="4" opacity="0.4"/><rect x="13" y="17" width="4" height="4" opacity="0.6"/></svg>` },
+        { name: "Qwen3 Next", provider: "Alibaba", color: "#6C5CE7", category: "General", params: "80B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.58 2 10c0 2.52 1.47 4.77 3.77 6.24-.24 1.07-.78 2.66-1.77 3.76 0 0 2.6-.5 4.53-1.82.94.2 1.93.32 2.97.32 5.52 0 10-3.58 10-8s-4.48-8-10-8zm-4 9a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2z"/></svg>` },
       ].map((model) => (
-        <div class="glass-card rounded-xl p-4">
-          <h3 class="text-sm font-semibold">{model.name}</h3>
-          <p class="text-xs text-text-muted mt-1">{model.provider}</p>
-          <span class="inline-block mt-2 text-xs rounded-full border border-border px-2 py-0.5 text-text-secondary">{model.category}</span>
+        <div class="model-card glass-card rounded-xl p-4 group cursor-default" style={`--card-color: ${model.color}`}>
+          <div class="flex items-center gap-3 mb-3">
+            <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-all group-hover:scale-110" style={`background: ${model.color}15; color: ${model.color}`}>
+              <Fragment set:html={model.logo.replace('viewBox', `class="h-4.5 w-4.5" viewBox`)} />
+            </div>
+            {model.params && (
+              <span class="ml-auto text-xs font-bold param-highlight opacity-40 group-hover:opacity-80 transition-opacity" style={`color: ${model.color}`}>{model.params}</span>
+            )}
+          </div>
+          <h3 class="text-sm font-semibold" style="font-family: var(--font-heading)">{model.name}</h3>
+          <p class="text-xs text-text-muted mt-0.5">{model.provider}</p>
+          <span
+            class="inline-block mt-2.5 text-[10px] font-medium rounded-full px-2.5 py-0.5 border transition-colors"
+            style={`border-color: ${model.color}30; color: ${model.color}; background: ${model.color}08`}
+          >
+            {model.category}
+          </span>
         </div>
       ))}
     </div>
   </section>
+
+  <!-- Section Divider -->
+  <div class="mx-auto max-w-4xl px-8"><div class="section-divider"></div></div>
 
   <!-- CTA Section -->
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

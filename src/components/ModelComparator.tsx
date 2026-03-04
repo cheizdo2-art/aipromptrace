@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
+import { ProviderLogo } from './ProviderLogos';
 
 interface Model {
   id: string;
@@ -230,11 +231,12 @@ export default function ModelComparator() {
               <button
                 key={model.id}
                 onClick={() => toggleModel(model.id)}
-                className={`relative flex flex-col items-start rounded-lg border p-3 text-left transition-all ${
+                className={`model-card relative flex items-center gap-2.5 rounded-lg border p-3 text-left ${
                   isSelected
                     ? 'border-[var(--color-accent)] bg-[var(--color-accent)]/10 shadow-[0_0_12px_rgba(99,102,241,0.15)]'
                     : 'border-[var(--color-border)] bg-[var(--color-bg-primary)]/30 hover:border-[var(--color-text-muted)]'
                 }`}
+                style={isSelected ? {} : { ['--hover-glow' as string]: model.color }}
               >
                 {isSelected && (
                   <div className="absolute top-1.5 right-1.5 h-4 w-4 rounded-full bg-[var(--color-accent)] flex items-center justify-center">
@@ -243,11 +245,13 @@ export default function ModelComparator() {
                     </svg>
                   </div>
                 )}
-                <div className="flex items-center gap-2 mb-1">
-                  <div className="h-2.5 w-2.5 rounded-full" style={{ background: model.color }} />
-                  <span className="text-xs font-medium text-[var(--color-text-primary)]">{model.name}</span>
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md" style={{ background: `${model.color}15` }}>
+                  <ProviderLogo provider={model.provider} className="h-4 w-4" />
                 </div>
-                <span className="text-xs text-[var(--color-text-muted)]">{model.provider}</span>
+                <div className="min-w-0">
+                  <span className="block text-xs font-semibold text-[var(--color-text-primary)] truncate" style={{ fontFamily: 'var(--font-heading)' }}>{model.name}</span>
+                  <span className="block text-[10px] text-[var(--color-text-muted)]">{model.provider}</span>
+                </div>
               </button>
             );
           })}
@@ -288,9 +292,10 @@ export default function ModelComparator() {
             >
               {/* Header */}
               <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[var(--color-border)]">
-                <div className="h-3 w-3 rounded-full" style={{ background: result.model.color }} />
-                <span className="text-sm font-semibold text-[var(--color-text-primary)]">{result.model.name}</span>
-                <span className="text-xs text-[var(--color-text-muted)]">{result.model.provider}</span>
+                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded" style={{ background: `${result.model.color}20`, color: result.model.color }}>
+                  <ProviderLogo provider={result.model.provider} className="h-3.5 w-3.5" />
+                </div>
+                <span className="text-sm font-semibold text-[var(--color-text-primary)]" style={{ fontFamily: 'var(--font-heading)' }}>{result.model.name}</span>
                 <span className="ml-auto text-xs text-[var(--color-text-muted)] font-mono">
                   {result.elapsed.toFixed(1)}s
                 </span>
