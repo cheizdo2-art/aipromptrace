@@ -1,0 +1,116 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  updated?: Date;
+  category: string;
+  author: string;
+  tags: string[];
+}
+
+const { title, description, date, updated, category, author, tags } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+const formattedUpdated = updated?.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const categoryColors: Record<string, string> = {
+  comparisons: 'text-accent-2 border-accent-2/30',
+  guides: 'text-accent border-accent/30',
+  news: 'text-success border-success/30',
+  tutorials: 'text-accent-3 border-accent-3/30',
+};
+---
+
+<Layout title={`${title} — AI Prompt Race`} description={description} canonical={`/blog/${Astro.url.pathname.split('/').pop()}`}>
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Breadcrumb -->
+    <nav class="mb-8 text-sm text-text-muted">
+      <a href="/" class="hover:text-text-secondary transition-colors">Home</a>
+      <span class="mx-2">›</span>
+      <a href="/blog" class="hover:text-text-secondary transition-colors">Blog</a>
+      <span class="mx-2">›</span>
+      <a href={`/blog/category/${category}`} class="hover:text-text-secondary transition-colors capitalize">{category}</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-10">
+      <div class="flex items-center gap-3 mb-4">
+        <span class={`text-xs font-medium border rounded-full px-3 py-1 capitalize ${categoryColors[category] || 'text-text-muted border-border'}`}>
+          {category}
+        </span>
+        <time datetime={date.toISOString()} class="text-sm text-text-muted">{formattedDate}</time>
+        {formattedUpdated && (
+          <span class="text-sm text-text-muted">· Updated {formattedUpdated}</span>
+        )}
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+        {title}
+      </h1>
+
+      <p class="mt-4 text-lg text-text-secondary leading-relaxed">
+        {description}
+      </p>
+
+      <div class="mt-6 flex items-center gap-3">
+        <div class="h-9 w-9 rounded-full bg-accent/20 flex items-center justify-center">
+          <svg class="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+        </div>
+        <div>
+          <p class="text-sm font-medium text-text-primary">{author}</p>
+          <p class="text-xs text-text-muted">AI Prompt Race</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article Body -->
+    <div class="prose prose-invert max-w-none
+      prose-headings:font-bold prose-headings:tracking-tight
+      prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+      prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+      prose-p:text-text-secondary prose-p:leading-relaxed
+      prose-a:text-accent prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-text-primary
+      prose-code:text-accent-2 prose-code:bg-bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
+      prose-pre:bg-bg-secondary prose-pre:border prose-pre:border-border prose-pre:rounded-xl
+      prose-blockquote:border-accent prose-blockquote:text-text-secondary
+      prose-li:text-text-secondary
+      prose-img:rounded-xl prose-img:border prose-img:border-border
+      prose-table:text-sm
+      prose-th:text-text-primary prose-th:border-border
+      prose-td:border-border prose-td:text-text-secondary
+    ">
+      <slot />
+    </div>
+
+    <!-- Tags -->
+    {tags.length > 0 && (
+      <div class="mt-12 pt-8 border-t border-border">
+        <div class="flex flex-wrap gap-2">
+          {tags.map(tag => (
+            <span class="text-xs rounded-full border border-border px-3 py-1 text-text-muted hover:text-text-secondary transition-colors">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- CTA -->
+    <div class="mt-12 rounded-xl bg-radial-glow border border-border p-8 text-center">
+      <h3 class="text-xl font-bold">Try it yourself</h3>
+      <p class="mt-2 text-sm text-text-secondary">Compare AI models side-by-side. Free, no signup.</p>
+      <a href="/#compare" class="mt-4 inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-2.5 text-sm font-semibold text-white hover:bg-accent-light transition-all">
+        Start Comparing
+        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    </div>
+  </article>
+</Layout>

@@ -1,0 +1,122 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description = "Compare AI models side-by-side for free. Test prompts across Llama, Mistral, DeepSeek, Qwen and 20+ models instantly. No signup required.",
+  canonical
+} = Astro.props;
+
+const siteUrl = "https://aipromptrace.com";
+const canonicalUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Preload fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="AI Prompt Race" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-bg-primary text-text-primary antialiased">
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-primary/80 backdrop-blur-xl">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="/" class="flex items-center gap-2">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-accent">
+              <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <span class="text-lg font-bold">AI Prompt Race</span>
+          </a>
+          <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Compare</a>
+            <a href="/blog" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Blog</a>
+            <a href="/tools" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Tools</a>
+            <a href="/about" class="text-sm text-text-secondary hover:text-text-primary transition-colors">About</a>
+          </div>
+          <a href="#compare" class="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-light transition-colors">
+            Try Now
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="pt-16">
+      <slot />
+    </main>
+
+    <footer class="border-t border-border bg-bg-secondary mt-24">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-sm font-semibold text-text-primary mb-4">Product</h3>
+            <ul class="space-y-2">
+              <li><a href="/" class="text-sm text-text-muted hover:text-text-secondary transition-colors">AI Comparator</a></li>
+              <li><a href="/tools" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Tools</a></li>
+              <li><a href="/pricing" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Pricing Calculator</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-text-primary mb-4">Reviews</h3>
+            <ul class="space-y-2">
+              <li><a href="/blog" class="text-sm text-text-muted hover:text-text-secondary transition-colors">All Reviews</a></li>
+              <li><a href="/blog/category/comparisons" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Comparisons</a></li>
+              <li><a href="/blog/category/guides" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Guides</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-text-primary mb-4">Popular</h3>
+            <ul class="space-y-2">
+              <li><a href="/blog/jasper-vs-copy-ai" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Jasper vs Copy.ai</a></li>
+              <li><a href="/blog/best-ai-writing-tools" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Best AI Writers</a></li>
+              <li><a href="/blog/chatgpt-alternatives" class="text-sm text-text-muted hover:text-text-secondary transition-colors">ChatGPT Alternatives</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-sm font-semibold text-text-primary mb-4">Company</h3>
+            <ul class="space-y-2">
+              <li><a href="/about" class="text-sm text-text-muted hover:text-text-secondary transition-colors">About</a></li>
+              <li><a href="/contact" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Contact</a></li>
+              <li><a href="/privacy" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Privacy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
+          <p class="text-sm text-text-muted">&copy; 2026 AI Prompt Race. All rights reserved.</p>
+          <p class="text-sm text-text-muted">Compare AI models instantly. Free forever.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

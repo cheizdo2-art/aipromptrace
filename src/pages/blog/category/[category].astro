@@ -1,0 +1,89 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const categories = ['comparisons', 'guides', 'news', 'tutorials'];
+  return categories.map(category => ({
+    params: { category },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft && data.category === category))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const categoryLabels: Record<string, string> = {
+  comparisons: 'AI Comparisons',
+  guides: 'Guides & How-Tos',
+  news: 'AI News',
+  tutorials: 'Tutorials',
+};
+
+const categoryColors: Record<string, string> = {
+  comparisons: 'text-accent-2 border-accent-2/30 bg-accent-2/5',
+  guides: 'text-accent border-accent/30 bg-accent/5',
+  news: 'text-success border-success/30 bg-success/5',
+  tutorials: 'text-accent-3 border-accent-3/30 bg-accent-3/5',
+};
+---
+
+<Layout title={`${categoryLabels[category]} — AI Prompt Race Blog`} description={`Browse ${categoryLabels[category].toLowerCase()} articles about AI models, tools, and comparisons.`} canonical={`/blog/category/${category}`}>
+  <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <nav class="mb-8 text-sm text-text-muted">
+      <a href="/" class="hover:text-text-secondary transition-colors">Home</a>
+      <span class="mx-2">&rsaquo;</span>
+      <a href="/blog" class="hover:text-text-secondary transition-colors">Blog</a>
+      <span class="mx-2">&rsaquo;</span>
+      <span class="text-text-secondary capitalize">{category}</span>
+    </nav>
+
+    <div class="mb-10">
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">
+        {categoryLabels[category]}
+      </h1>
+      <p class="mt-4 text-lg text-text-secondary">
+        {posts.length} article{posts.length !== 1 ? 's' : ''} in this category.
+      </p>
+    </div>
+
+    <!-- Posts -->
+    {posts.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map(post => (
+          <a href={`/blog/${post.id.replace(/\.md$/, '')}`} class="glass-card rounded-xl p-6 flex flex-col group">
+            <div class="flex items-center gap-2 mb-3">
+              <span class={`text-xs font-medium border rounded-full px-2.5 py-0.5 capitalize ${categoryColors[post.data.category] || 'text-text-muted border-border'}`}>
+                {post.data.category}
+              </span>
+              <time datetime={post.data.date.toISOString()} class="text-xs text-text-muted">
+                {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+              </time>
+            </div>
+            <h2 class="text-lg font-bold group-hover:text-accent transition-colors leading-snug mb-2">
+              {post.data.title}
+            </h2>
+            <p class="text-sm text-text-secondary leading-relaxed flex-1">
+              {post.data.description}
+            </p>
+            <div class="mt-4 flex items-center gap-1 text-xs text-accent font-medium">
+              Read more
+              <svg class="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-20">
+        <h2 class="text-xl font-bold mb-2">No articles yet</h2>
+        <p class="text-text-secondary mb-6">Check back soon for {categoryLabels[category].toLowerCase()} content.</p>
+        <a href="/blog" class="text-sm text-accent hover:underline">View all articles</a>
+      </div>
+    )}
+  </section>
+</Layout>
