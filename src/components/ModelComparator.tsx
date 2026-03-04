@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useCallback } from 'react';
 
 interface Model {
   id: string;
@@ -30,41 +30,13 @@ interface ModelResult {
   elapsed: number;
 }
 
-const API_KEY_STORAGE = 'aipr_openrouter_key';
-
 export default function ModelComparator() {
   const [prompt, setPrompt] = useState('');
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
   const [results, setResults] = useState<ModelResult[]>([]);
   const [isRunning, setIsRunning] = useState(false);
-  const [apiKey, setApiKey] = useState('');
-  const [showKeyInput, setShowKeyInput] = useState(false);
-  const [keyInput, setKeyInput] = useState('');
+  const [rateLimited, setRateLimited] = useState(false);
   const abortRef = useRef<AbortController[]>([]);
-
-  useEffect(() => {
-    const saved = localStorage.getItem(API_KEY_STORAGE);
-    if (saved) {
-      setApiKey(saved);
-    } else {
-      setShowKeyInput(true);
-    }
-  }, []);
-
-  const saveKey = () => {
-    const key = keyInput.trim();
-    if (!key.startsWith('sk-or-')) return;
-    localStorage.setItem(API_KEY_STORAGE, key);
-    setApiKey(key);
-    setShowKeyInput(false);
-  };
-
-  const clearKey = () => {
-    localStorage.removeItem(API_KEY_STORAGE);
-    setApiKey('');
-    setKeyInput('');
-    setShowKeyInput(true);
-  };
 
   const toggleModel = useCallback((modelId: string) => {
     setSelectedModels(prev => {
@@ -86,13 +58,10 @@ export default function ModelComparator() {
     });
 
     try {
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-          'HTTP-Referer': 'https://aipromptrace.com',
-          'X-Title': 'AI Prompt Race',
         },
         body: JSON.stringify({
           model: model.openrouterId,
@@ -105,10 +74,10 @@ export default function ModelComparator() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        const msg = errorData?.error?.message || `HTTP ${response.status}`;
-        if (response.status === 401) {
-          clearKey();
-          throw new Error('Invalid API key. Please enter a valid OpenRouter key.');
+        const msg = errorData?.error?.message || errorData?.error || `HTTP ${response.status}`;
+        if (response.status === 429) {
+          setRateLimited(true);
+          throw new Error(msg);
         }
         throw new Error(msg);
       }
@@ -180,7 +149,7 @@ export default function ModelComparator() {
   };
 
   const runRace = async () => {
-    if (!prompt.trim() || selectedModels.length < 2 || !apiKey) return;
+    if (!prompt.trim() || selectedModels.length < 2) return;
 
     // Abort previous
     abortRef.current.forEach(c => c.abort());
@@ -211,56 +180,20 @@ export default function ModelComparator() {
 
   return (
     <div>
-      {/* API Key Setup */}
-      {showKeyInput && (
-        <div className="mb-6 rounded-xl border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/5 p-5">
-          <div className="flex items-start gap-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent)]/10 mt-0.5">
-              <svg className="h-4 w-4 text-[var(--color-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+      {/* Rate limit warning */}
+      {rateLimited && (
+        <div className="mb-6 rounded-xl border border-amber-500/30 bg-amber-500/5 p-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-500/10">
+              <svg className="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             </div>
-            <div className="flex-1">
-              <h3 className="text-sm font-semibold text-[var(--color-text-primary)] mb-1">Free API Key Required</h3>
-              <p className="text-xs text-[var(--color-text-secondary)] mb-3 leading-relaxed">
-                Get a free API key from{' '}
-                <a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] hover:underline font-medium">
-                  openrouter.ai/keys
-                </a>
-                {' '}(no credit card needed). This key stays in your browser — we never see it.
-              </p>
-              <div className="flex gap-2">
-                <input
-                  type="password"
-                  value={keyInput}
-                  onChange={e => setKeyInput(e.target.value)}
-                  onKeyDown={e => { if (e.key === 'Enter') saveKey(); }}
-                  placeholder="sk-or-v1-..."
-                  className="flex-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-primary)] px-3 py-2 text-sm text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)] font-mono"
-                />
-                <button
-                  onClick={saveKey}
-                  disabled={!keyInput.trim().startsWith('sk-or-')}
-                  className="rounded-lg bg-[var(--color-accent)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--color-accent-light)] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  Save
-                </button>
-              </div>
+            <div>
+              <p className="text-sm font-medium text-amber-300">Daily limit reached</p>
+              <p className="text-xs text-[var(--color-text-muted)]">You've used all 20 free requests for today. Come back tomorrow!</p>
             </div>
           </div>
-        </div>
-      )}
-
-      {/* Connected indicator */}
-      {apiKey && !showKeyInput && (
-        <div className="mb-4 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs text-[var(--color-success)]">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-success)]" />
-            API connected
-          </div>
-          <button onClick={clearKey} className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-text-secondary)] transition-colors">
-            Change key
-          </button>
         </div>
       )}
 
@@ -335,7 +268,7 @@ export default function ModelComparator() {
       ) : (
         <button
           onClick={runRace}
-          disabled={selectedModels.length < 2 || !prompt.trim() || !apiKey}
+          disabled={selectedModels.length < 2 || !prompt.trim() || rateLimited}
           className="w-full rounded-xl bg-[var(--color-accent)] py-3.5 text-base font-semibold text-white hover:bg-[var(--color-accent-light)] transition-all hover:shadow-lg hover:shadow-[var(--color-accent)]/25 flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none"
         >
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
