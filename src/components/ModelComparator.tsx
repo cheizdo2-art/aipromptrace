@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { ProviderLogo } from './ProviderLogos';
 
 interface Model {
@@ -38,6 +38,20 @@ export default function ModelComparator() {
   const [isRunning, setIsRunning] = useState(false);
   const [rateLimited, setRateLimited] = useState(false);
   const abortRef = useRef<AbortController[]>([]);
+
+  // Read URL params for deep-linking from other tools
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlPrompt = params.get('prompt');
+    const urlModels = params.get('models');
+    if (urlPrompt) setPrompt(decodeURIComponent(urlPrompt));
+    if (urlModels) {
+      const modelIds = urlModels.split(',').filter(id =>
+        AVAILABLE_MODELS.some(m => m.id === id)
+      );
+      setSelectedModels(modelIds.slice(0, 4));
+    }
+  }, []);
 
   const toggleModel = useCallback((modelId: string) => {
     setSelectedModels(prev => {

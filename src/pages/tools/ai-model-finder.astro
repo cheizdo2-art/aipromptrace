@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AIModelFinder from '../../components/AIModelFinder';
+---
+
+<Layout
+  title="AI Model Finder — Which AI Model Should You Use?"
+  description="Answer 4 quick questions and get personalized AI model recommendations. Find the perfect model for writing, coding, or analysis."
+  canonical="/tools/ai-model-finder"
+>
+  <section class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Breadcrumb -->
+    <nav class="mb-8 text-sm text-text-muted">
+      <a href="/" class="hover:text-text-secondary transition-colors">Home</a>
+      <span class="mx-2">&rsaquo;</span>
+      <a href="/tools" class="hover:text-text-secondary transition-colors">Tools</a>
+      <span class="mx-2">&rsaquo;</span>
+      <span class="text-text-secondary">AI Model Finder</span>
+    </nav>
+
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+        AI Model <span class="gradient-text">Finder</span>
+      </h1>
+      <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+        Answer 4 quick questions. Get personalized AI model recommendations in seconds.
+      </p>
+    </div>
+
+    <div class="glass-card rounded-2xl p-6 sm:p-8">
+      <AIModelFinder client:load />
+    </div>
+  </section>
+
+  <!-- SEO content -->
+  <section class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="section-divider mb-12"></div>
+    <div class="prose prose-invert max-w-none prose-headings:font-bold prose-p:text-text-secondary prose-a:text-accent">
+      <h2>How to Choose the Right AI Model</h2>
+      <p>
+        Not all AI models are created equal. Some excel at writing, others at coding, and some strike a balance between speed and quality. The right model depends on your specific use case, budget, and performance requirements.
+      </p>
+      <p>
+        For <strong>coding tasks</strong>, models like Llama 3.3 70B and Qwen3 80B consistently outperform. For <strong>creative writing</strong>, Gemma 3 27B produces notably natural-sounding text. If <strong>speed</strong> matters most, smaller models like Nemotron 9B and Gemma 12B respond in milliseconds.
+      </p>
+      <p>
+        Our Model Finder uses a weighted scoring system to match your needs against each model's strengths. After getting your recommendations, you can test them head-to-head in our <a href="/#compare">free comparator</a>.
+      </p>
+    </div>
+  </section>
+</Layout>

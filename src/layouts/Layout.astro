@@ -65,12 +65,36 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
             <a href="/tools" class="text-sm text-text-secondary hover:text-text-primary transition-colors">Tools</a>
             <a href="/about" class="text-sm text-text-secondary hover:text-text-primary transition-colors">About</a>
           </div>
-          <a href="#compare" class="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-light transition-colors">
+          <a href="/#compare" class="hidden sm:inline-flex rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent-light transition-colors">
             Try Now
           </a>
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-btn" class="md:hidden p-2 text-text-secondary hover:text-text-primary" aria-label="Menu">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
         </div>
       </div>
     </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="fixed top-16 left-0 right-0 z-40 hidden border-b border-border bg-bg-primary/95 backdrop-blur-xl md:hidden">
+      <div class="px-4 py-4 space-y-1">
+        <a href="/" class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-secondary transition-colors">Compare</a>
+        <a href="/blog" class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-secondary transition-colors">Blog</a>
+        <a href="/tools" class="block rounded-lg px-3 py-2 text-sm text-text-secondary hover:text-text-primary hover:bg-bg-secondary transition-colors">Tools</a>
+        <a href="/tools/ai-pricing-calculator" class="block rounded-lg px-3 py-2 text-sm text-text-muted hover:text-text-primary hover:bg-bg-secondary transition-colors pl-6">Pricing Calculator</a>
+        <a href="/tools/ai-model-finder" class="block rounded-lg px-3 py-2 text-sm text-text-muted hover:text-text-primary hover:bg-bg-secondary transition-colors pl-6">Model Finder</a>
+        <a href="/tools/prompt-library" class="block rounded-lg px-3 py-2 text-sm text-text-muted hover:text-text-primary hover:bg-bg-secondary transition-colors pl-6">Prompt Library</a>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+        document.getElementById('mobile-menu')?.classList.toggle('hidden');
+      });
+    </script>
 
     <main class="pt-16">
       <slot />
@@ -84,7 +108,9 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
             <ul class="space-y-2">
               <li><a href="/" class="text-sm text-text-muted hover:text-text-secondary transition-colors">AI Comparator</a></li>
               <li><a href="/tools" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Tools</a></li>
-              <li><a href="/pricing" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Pricing Calculator</a></li>
+              <li><a href="/tools/ai-pricing-calculator" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Pricing Calculator</a></li>
+              <li><a href="/tools/ai-model-finder" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Model Finder</a></li>
+              <li><a href="/tools/prompt-library" class="text-sm text-text-muted hover:text-text-secondary transition-colors">Prompt Library</a></li>
             </ul>
           </div>
           <div>

@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AIPricingCalculator from '../../components/AIPricingCalculator';
+---
+
+<Layout
+  title="AI Pricing Calculator — Compare LLM Costs Per Token"
+  description="Calculate and compare AI model costs instantly. See pricing for GPT-4o, Claude, Gemini, Llama, and 25+ models. Free tool."
+  canonical="/tools/ai-pricing-calculator"
+>
+  <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Breadcrumb -->
+    <nav class="mb-8 text-sm text-text-muted">
+      <a href="/" class="hover:text-text-secondary transition-colors">Home</a>
+      <span class="mx-2">&rsaquo;</span>
+      <a href="/tools" class="hover:text-text-secondary transition-colors">Tools</a>
+      <span class="mx-2">&rsaquo;</span>
+      <span class="text-text-secondary">AI Pricing Calculator</span>
+    </nav>
+
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+        AI <span class="gradient-text">Pricing Calculator</span>
+      </h1>
+      <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+        Compare costs across 25+ AI models. Enter your token usage and find the cheapest option instantly.
+      </p>
+    </div>
+
+    <div class="glass-card rounded-2xl p-6 sm:p-8">
+      <AIPricingCalculator client:load />
+    </div>
+  </section>
+
+  <!-- SEO content -->
+  <section class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="section-divider mb-12"></div>
+    <div class="prose prose-invert max-w-none prose-headings:font-bold prose-p:text-text-secondary prose-a:text-accent">
+      <h2>How AI Model Pricing Works</h2>
+      <p>
+        Most AI providers charge per <strong>token</strong> — a unit of text roughly equal to 3/4 of a word. A 1,000-word article is about 1,300 tokens. Prices vary wildly: GPT-4 Turbo costs $30 per million output tokens, while Gemini 2.0 Flash charges just $0.40 for the same amount.
+      </p>
+      <p>
+        Input tokens (your prompt) and output tokens (the AI response) are usually priced differently, with output tokens costing 2-5x more. Our calculator lets you adjust the input/output ratio to match your actual usage pattern.
+      </p>
+      <h2>Free Models vs Paid Models</h2>
+      <p>
+        Several high-quality models are available completely free through services like OpenRouter. Models like Llama 3.3 70B, Gemma 3 27B, and Qwen3 80B offer impressive quality at zero cost. You can test all 10 free models in our <a href="/#compare">model comparator</a> before deciding if you need a paid option.
+      </p>
+    </div>
+  </section>
+</Layout>

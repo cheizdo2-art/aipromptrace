@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PromptLibrary from '../../components/PromptLibrary';
+---
+
+<Layout
+  title="AI Prompt Library — 40+ Free Prompt Templates for Any Task"
+  description="Browse 40+ curated AI prompts for writing, coding, analysis, creative projects, business, and education. Copy and use instantly."
+  canonical="/tools/prompt-library"
+>
+  <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Breadcrumb -->
+    <nav class="mb-8 text-sm text-text-muted">
+      <a href="/" class="hover:text-text-secondary transition-colors">Home</a>
+      <span class="mx-2">&rsaquo;</span>
+      <a href="/tools" class="hover:text-text-secondary transition-colors">Tools</a>
+      <span class="mx-2">&rsaquo;</span>
+      <span class="text-text-secondary">Prompt Library</span>
+    </nav>
+
+    <div class="text-center mb-10">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+        AI <span class="gradient-text">Prompt Library</span>
+      </h1>
+      <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">
+        40+ curated prompts for writing, coding, analysis, and more. Copy any prompt and test it instantly.
+      </p>
+    </div>
+
+    <PromptLibrary client:load />
+  </section>
+
+  <!-- SEO content -->
+  <section class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="section-divider mb-12"></div>
+    <div class="prose prose-invert max-w-none prose-headings:font-bold prose-p:text-text-secondary prose-a:text-accent">
+      <h2>How to Write Better AI Prompts</h2>
+      <p>
+        The quality of your AI output depends heavily on how you write your prompt. A vague request gets a vague response. A specific, structured prompt gets useful results you can actually use.
+      </p>
+      <p>
+        Good prompts include: <strong>context</strong> (what you're working on), <strong>format</strong> (how you want the response structured), <strong>constraints</strong> (word count, tone, what to avoid), and <strong>examples</strong> (show the AI what you're looking for).
+      </p>
+      <p>
+        Every prompt in this library follows these principles. Pick one, customize the bracketed sections, and run it through our <a href="/#compare">AI comparator</a> to see how different models handle it.
+      </p>
+    </div>
+  </section>
+</Layout>
