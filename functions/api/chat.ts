@@ -3,7 +3,7 @@ interface Env {
   RATE_LIMIT: KVNamespace;
 }
 
-const DAILY_LIMIT = 20;
+const DAILY_LIMIT = 50;
 const ALLOWED_MODELS = [
   'google/gemma-3-27b-it:free',
   'google/gemma-3-12b-it:free',
