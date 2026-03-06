@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Privacy Policy — AI Prompt Race"
+  description="Privacy policy for AI Prompt Race. Learn how we handle your data."
+  canonical="/privacy"
+>
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-2">
+      Privacy Policy
+    </h1>
+    <p class="text-sm text-text-muted mb-8">Last updated: March 6, 2026</p>
+
+    <div class="prose prose-invert max-w-none prose-headings:font-bold prose-p:text-text-secondary prose-a:text-accent">
+      <h2>What Data We Collect</h2>
+
+      <h3>Prompts You Enter</h3>
+      <p>
+        When you use our AI comparator, your prompts are sent to <a href="https://openrouter.ai">OpenRouter</a> to generate responses. We do not store your prompts on our servers. They are processed in real time and not logged or saved by us.
+      </p>
+
+      <h3>Analytics</h3>
+      <p>
+        We use Google Analytics to understand how visitors use our site. This collects anonymized data such as pages visited, time on site, and general location (country/city level). No personally identifiable information is collected through analytics.
+      </p>
+
+      <h3>Rate Limiting</h3>
+      <p>
+        To prevent abuse, we store a counter associated with your IP address in Cloudflare KV storage. This counter resets every 24 hours and is used solely to enforce daily usage limits. We do not log or store IP addresses for any other purpose.
+      </p>
+
+      <h2>What We Don't Collect</h2>
+      <ul>
+        <li>No account or registration required</li>
+        <li>No email addresses collected (unless you contact us)</li>
+        <li>No cookies for tracking or advertising</li>
+        <li>No personal data sold to third parties</li>
+      </ul>
+
+      <h2>Third-Party Services</h2>
+      <p>Our site uses the following third-party services:</p>
+      <ul>
+        <li><strong>Cloudflare</strong> — Hosting and CDN. <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</a></li>
+        <li><strong>OpenRouter</strong> — AI model API. <a href="https://openrouter.ai/privacy">OpenRouter Privacy Policy</a></li>
+        <li><strong>Google Analytics</strong> — Site analytics. <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+      </ul>
+
+      <h2>Cookies</h2>
+      <p>
+        We use minimal cookies required by Google Analytics for anonymized usage tracking. We do not use advertising cookies or tracking pixels.
+      </p>
+
+      <h2>Your Rights</h2>
+      <p>
+        Since we don't collect personal data, there is generally nothing to request deletion of. If you have concerns about your data, please <a href="/contact">contact us</a>.
+      </p>
+
+      <h2>Changes to This Policy</h2>
+      <p>
+        We may update this privacy policy from time to time. Changes will be posted on this page with an updated date.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        If you have questions about this privacy policy, please reach out through our <a href="/contact">contact page</a>.
+      </p>
+    </div>
+  </section>
+</Layout>
