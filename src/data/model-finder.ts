@@ -81,17 +81,9 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
 ];
 
 const MODEL_SCORES: ModelScore[] = [
-  // Free models (from our comparator)
-  { id: 'gemma-27b', name: 'Gemma 3 27B', provider: 'Google', color: '#34A853', isFree: true, comparatorId: 'gemma-27b',
-    scores: { writing: 8, coding: 7, analysis: 7, creative: 8, general: 8, speed: 6, quality: 8, small: 0, medium: 10, large: 0 } },
+  // Free models (from our comparator — only models with confirmed uptime)
   { id: 'gemma-12b', name: 'Gemma 3 12B', provider: 'Google', color: '#0F9D58', isFree: true, comparatorId: 'gemma-12b',
     scores: { writing: 6, coding: 6, analysis: 5, creative: 6, general: 7, speed: 9, quality: 5, small: 10, medium: 0, large: 0 } },
-  { id: 'llama-70b', name: 'Llama 3.3 70B', provider: 'Meta', color: '#0668E1', isFree: true, comparatorId: 'llama',
-    scores: { writing: 8, coding: 9, analysis: 8, creative: 7, general: 9, speed: 5, quality: 9, small: 0, medium: 10, large: 0 } },
-  { id: 'mistral-24b', name: 'Mistral Small 24B', provider: 'Mistral', color: '#FF7000', isFree: true, comparatorId: 'mistral',
-    scores: { writing: 7, coding: 8, analysis: 6, creative: 6, general: 7, speed: 8, quality: 7, small: 0, medium: 10, large: 0 } },
-  { id: 'qwen3-80b', name: 'Qwen3 Next 80B', provider: 'Alibaba', color: '#6C5CE7', isFree: true, comparatorId: 'qwen3-80b',
-    scores: { writing: 7, coding: 9, analysis: 8, creative: 6, general: 8, speed: 5, quality: 9, small: 0, medium: 0, large: 10 } },
   { id: 'nemotron-30b', name: 'Nemotron 30B', provider: 'NVIDIA', color: '#76B900', isFree: true, comparatorId: 'nemotron-30b',
     scores: { writing: 6, coding: 7, analysis: 7, creative: 5, general: 7, speed: 8, quality: 7, small: 0, medium: 10, large: 0 } },
   { id: 'nemotron-9b', name: 'Nemotron 9B', provider: 'NVIDIA', color: '#8DC63F', isFree: true, comparatorId: 'nemotron-9b',
@@ -102,14 +94,6 @@ const MODEL_SCORES: ModelScore[] = [
     scores: { writing: 5, coding: 5, analysis: 5, creative: 5, general: 6, speed: 9, quality: 4, small: 10, medium: 0, large: 0 } },
   { id: 'glm-4.5', name: 'GLM 4.5 Air', provider: 'Zhipu AI', color: '#00BCF2', isFree: true, comparatorId: 'glm',
     scores: { writing: 6, coding: 6, analysis: 6, creative: 6, general: 7, speed: 7, quality: 6, small: 0, medium: 10, large: 0 } },
-  { id: 'qwen3-coder', name: 'Qwen3 Coder 480B', provider: 'Alibaba', color: '#9B59B6', isFree: true, comparatorId: 'qwen3-coder',
-    scores: { writing: 5, coding: 10, analysis: 7, creative: 4, general: 7, speed: 4, quality: 9, small: 0, medium: 0, large: 10 } },
-  { id: 'hermes-405b', name: 'Hermes 3 405B', provider: 'NousResearch', color: '#2ECC71', isFree: true, comparatorId: 'hermes-405b',
-    scores: { writing: 8, coding: 8, analysis: 9, creative: 7, general: 8, speed: 4, quality: 9, small: 0, medium: 0, large: 10 } },
-  { id: 'step-flash', name: 'Step 3.5 Flash', provider: 'StepFun', color: '#F39C12', isFree: true, comparatorId: 'step-flash',
-    scores: { writing: 6, coding: 6, analysis: 5, creative: 6, general: 7, speed: 10, quality: 5, small: 10, medium: 0, large: 0 } },
-  { id: 'gpt-oss-120b', name: 'GPT-OSS 120B', provider: 'OpenAI', color: '#10a37f', isFree: true, comparatorId: 'gpt-oss-120b',
-    scores: { writing: 8, coding: 8, analysis: 8, creative: 7, general: 9, speed: 5, quality: 9, small: 0, medium: 0, large: 10 } },
 
   // Paid models
   { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI', color: '#10a37f', isFree: false,

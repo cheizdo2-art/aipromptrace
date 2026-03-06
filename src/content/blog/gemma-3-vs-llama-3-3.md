@@ -118,10 +118,10 @@ If I had to pick one for general daily use? Gemma 3 27B. The speed advantage and
 
 But if I'm writing code or solving complex problems? Llama 3.3 70B, every time.
 
-The good news: both are completely free on OpenRouter, and you can test them right now. No signup, no API key, no credit card.
+The good news: both models are available for free on OpenRouter. You can compare other free AI models head-to-head in our comparator right now. No signup, no API key, no credit card.
 
-**[Try Gemma vs Llama in our free comparator →](/)**
+**[Compare free AI models in our comparator →](/)**
 
 ---
 
-*Tested on March 2026 using AI Prompt Race comparator. Results may vary based on prompt complexity and OpenRouter server load. Both models accessed via OpenRouter free tier.*
+*Tested on March 2026 using AI Prompt Race comparator. Results may vary based on prompt complexity and OpenRouter server load. Model availability may change over time.*

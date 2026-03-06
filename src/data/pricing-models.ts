@@ -36,19 +36,11 @@ export const PRICING_MODELS: PricingModel[] = [
   { id: 'qwen-2.5-72b', name: 'Qwen 2.5 72B', provider: 'Alibaba (via API)', inputPricePerMillion: 0.35, outputPricePerMillion: 0.40, isFree: false, contextWindow: 128000, category: 'budget', color: '#6C5CE7' },
   { id: 'grok-2', name: 'Grok-2', provider: 'xAI', inputPricePerMillion: 2.00, outputPricePerMillion: 10.00, isFree: false, contextWindow: 131072, category: 'frontier', color: '#1DA1F2' },
 
-  // Free models (our comparator)
-  { id: 'gemma-3-27b', name: 'Gemma 3 27B', provider: 'Google', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#34A853' },
-  { id: 'gemma-3-12b', name: 'Gemma 3 12B', provider: 'Google', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#0F9D58' },
-  { id: 'nemotron-30b', name: 'Nemotron 30B', provider: 'NVIDIA', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#76B900' },
+  // Free models (our comparator — only models with confirmed uptime)
+  { id: 'gemma-3-12b', name: 'Gemma 3 12B', provider: 'Google', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 32768, category: 'free', color: '#0F9D58' },
+  { id: 'nemotron-30b', name: 'Nemotron 30B', provider: 'NVIDIA', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 256000, category: 'free', color: '#76B900' },
   { id: 'nemotron-9b', name: 'Nemotron 9B', provider: 'NVIDIA', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#8DC63F' },
-  { id: 'trinity-400b', name: 'Trinity Large 400B', provider: 'Arcee AI', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#E74C3C' },
-  { id: 'trinity-mini', name: 'Trinity Mini', provider: 'Arcee AI', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#FF6B6B' },
-  { id: 'glm-4.5-air', name: 'GLM 4.5 Air', provider: 'Zhipu AI', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#00BCF2' },
-  { id: 'llama-3.3-70b-free', name: 'Llama 3.3 70B', provider: 'Meta', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#0668E1' },
-  { id: 'mistral-small-24b', name: 'Mistral Small 24B', provider: 'Mistral', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#FF7000' },
-  { id: 'qwen3-80b', name: 'Qwen3 Next 80B', provider: 'Alibaba', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#6C5CE7' },
-  { id: 'qwen3-coder', name: 'Qwen3 Coder 480B', provider: 'Alibaba', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#9B59B6' },
-  { id: 'hermes-405b', name: 'Hermes 3 405B', provider: 'NousResearch', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#2ECC71' },
-  { id: 'step-flash', name: 'Step 3.5 Flash', provider: 'StepFun', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#F39C12' },
-  { id: 'gpt-oss-120b', name: 'GPT-OSS 120B', provider: 'OpenAI', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#10a37f' },
+  { id: 'trinity-400b', name: 'Trinity Large 400B', provider: 'Arcee AI', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 131000, category: 'free', color: '#E74C3C' },
+  { id: 'trinity-mini', name: 'Trinity Mini', provider: 'Arcee AI', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 131072, category: 'free', color: '#FF6B6B' },
+  { id: 'glm-4.5-air', name: 'GLM 4.5 Air', provider: 'Zhipu AI', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 131072, category: 'free', color: '#00BCF2' },
 ];

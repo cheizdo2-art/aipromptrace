@@ -5,40 +5,12 @@ interface Env {
 
 const DAILY_LIMIT = 200;
 const ALLOWED_MODELS = [
-  // Google
-  'google/gemma-3-27b-it:free',
   'google/gemma-3-12b-it:free',
-  'google/gemma-3-4b-it:free',
-  'google/gemma-3n-e4b-it:free',
-  // NVIDIA
   'nvidia/nemotron-3-nano-30b-a3b:free',
   'nvidia/nemotron-nano-9b-v2:free',
-  'nvidia/nemotron-nano-12b-v2-vl:free',
-  // Arcee AI
   'arcee-ai/trinity-large-preview:free',
   'arcee-ai/trinity-mini:free',
-  // Z.AI
   'z-ai/glm-4.5-air:free',
-  // Meta
-  'meta-llama/llama-3.3-70b-instruct:free',
-  'meta-llama/llama-3.2-3b-instruct:free',
-  // Mistral
-  'mistralai/mistral-small-3.1-24b-instruct:free',
-  // Alibaba
-  'qwen/qwen3-next-80b-a3b-instruct:free',
-  'qwen/qwen3-coder:free',
-  'qwen/qwen3-4b:free',
-  // NousResearch
-  'nousresearch/hermes-3-llama-3.1-405b:free',
-  // StepFun
-  'stepfun/step-3.5-flash:free',
-  // OpenAI
-  'openai/gpt-oss-120b:free',
-  'openai/gpt-oss-20b:free',
-  // Venice
-  'cognitivecomputations/dolphin-mistral-24b-venice-edition:free',
-  // Liquid
-  'liquid/lfm-2.5-1.2b-instruct:free',
 ];
 
 function getClientIP(request: Request): string {

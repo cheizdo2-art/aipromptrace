@@ -10,20 +10,12 @@ interface Model {
 }
 
 const AVAILABLE_MODELS: Model[] = [
-  { id: 'gemma-27b', name: 'Gemma 3 27B', provider: 'Google', color: '#34A853', openrouterId: 'google/gemma-3-27b-it:free' },
   { id: 'gemma-12b', name: 'Gemma 3 12B', provider: 'Google', color: '#0F9D58', openrouterId: 'google/gemma-3-12b-it:free' },
   { id: 'nemotron-30b', name: 'Nemotron 30B', provider: 'NVIDIA', color: '#76B900', openrouterId: 'nvidia/nemotron-3-nano-30b-a3b:free' },
   { id: 'nemotron-9b', name: 'Nemotron 9B', provider: 'NVIDIA', color: '#8DC63F', openrouterId: 'nvidia/nemotron-nano-9b-v2:free' },
   { id: 'trinity-large', name: 'Trinity Large 400B', provider: 'Arcee AI', color: '#E74C3C', openrouterId: 'arcee-ai/trinity-large-preview:free' },
   { id: 'trinity-mini', name: 'Trinity Mini', provider: 'Arcee AI', color: '#FF6B6B', openrouterId: 'arcee-ai/trinity-mini:free' },
   { id: 'glm', name: 'GLM 4.5 Air', provider: 'Zhipu AI', color: '#00BCF2', openrouterId: 'z-ai/glm-4.5-air:free' },
-  { id: 'llama', name: 'Llama 3.3 70B', provider: 'Meta', color: '#0668E1', openrouterId: 'meta-llama/llama-3.3-70b-instruct:free' },
-  { id: 'mistral', name: 'Mistral Small 24B', provider: 'Mistral', color: '#FF7000', openrouterId: 'mistralai/mistral-small-3.1-24b-instruct:free' },
-  { id: 'qwen3-80b', name: 'Qwen3 Next 80B', provider: 'Alibaba', color: '#6C5CE7', openrouterId: 'qwen/qwen3-next-80b-a3b-instruct:free' },
-  { id: 'qwen3-coder', name: 'Qwen3 Coder 480B', provider: 'Alibaba', color: '#9B59B6', openrouterId: 'qwen/qwen3-coder:free' },
-  { id: 'hermes-405b', name: 'Hermes 3 405B', provider: 'NousResearch', color: '#2ECC71', openrouterId: 'nousresearch/hermes-3-llama-3.1-405b:free' },
-  { id: 'step-flash', name: 'Step 3.5 Flash', provider: 'StepFun', color: '#F39C12', openrouterId: 'stepfun/step-3.5-flash:free' },
-  { id: 'gpt-oss-120b', name: 'GPT-OSS 120B', provider: 'OpenAI', color: '#10a37f', openrouterId: 'openai/gpt-oss-120b:free' },
 ];
 
 interface ModelResult {
