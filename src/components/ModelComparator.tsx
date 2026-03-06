@@ -20,6 +20,10 @@ const AVAILABLE_MODELS: Model[] = [
   { id: 'llama', name: 'Llama 3.3 70B', provider: 'Meta', color: '#0668E1', openrouterId: 'meta-llama/llama-3.3-70b-instruct:free' },
   { id: 'mistral', name: 'Mistral Small 24B', provider: 'Mistral', color: '#FF7000', openrouterId: 'mistralai/mistral-small-3.1-24b-instruct:free' },
   { id: 'qwen3-80b', name: 'Qwen3 Next 80B', provider: 'Alibaba', color: '#6C5CE7', openrouterId: 'qwen/qwen3-next-80b-a3b-instruct:free' },
+  { id: 'qwen3-coder', name: 'Qwen3 Coder 480B', provider: 'Alibaba', color: '#9B59B6', openrouterId: 'qwen/qwen3-coder:free' },
+  { id: 'hermes-405b', name: 'Hermes 3 405B', provider: 'NousResearch', color: '#2ECC71', openrouterId: 'nousresearch/hermes-3-llama-3.1-405b:free' },
+  { id: 'step-flash', name: 'Step 3.5 Flash', provider: 'StepFun', color: '#F39C12', openrouterId: 'stepfun/step-3.5-flash:free' },
+  { id: 'gpt-oss-120b', name: 'GPT-OSS 120B', provider: 'OpenAI', color: '#10a37f', openrouterId: 'openai/gpt-oss-120b:free' },
 ];
 
 interface ModelResult {
@@ -324,7 +328,15 @@ export default function ModelComparator() {
               {/* Body */}
               <div className="flex-1 min-h-[120px] max-h-[400px] overflow-y-auto">
                 {result.error ? (
-                  <p className="text-sm text-red-400">{result.error}</p>
+                  <div className="flex flex-col items-center justify-center py-6 text-center">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/10 mb-3">
+                      <svg className="h-5 w-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                      </svg>
+                    </div>
+                    <p className="text-sm font-medium text-amber-300 mb-1">Server overloaded</p>
+                    <p className="text-xs text-[var(--color-text-muted)]">This model is temporarily busy. Try another one!</p>
+                  </div>
                 ) : result.text ? (
                   <pre className="text-sm text-[var(--color-text-secondary)] leading-relaxed whitespace-pre-wrap font-sans">
                     {result.text}
@@ -340,10 +352,31 @@ export default function ModelComparator() {
 
               {/* Footer stats */}
               {result.done && result.text && (
-                <div className="mt-3 pt-3 border-t border-[var(--color-border)] flex items-center gap-4 text-xs text-[var(--color-text-muted)]">
-                  <span>{result.text.split(/\s+/).length} words</span>
-                  <span>{result.text.length} chars</span>
-                  <span>{result.elapsed.toFixed(1)}s total</span>
+                <div className="mt-3 pt-3 border-t border-[var(--color-border)] flex items-center gap-3">
+                  <div className="flex items-center gap-1.5 rounded-md bg-[var(--color-accent)]/10 px-2.5 py-1">
+                    <svg className="h-3 w-3 text-[var(--color-accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                    </svg>
+                    <span className="text-xs font-semibold text-[var(--color-accent)]" style={{ fontFamily: 'var(--font-heading)', fontVariantNumeric: 'tabular-nums' }}>
+                      {result.text.split(/\s+/).length} <span className="font-normal text-[var(--color-accent)]/70">words</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 rounded-md bg-[var(--color-accent-2)]/10 px-2.5 py-1">
+                    <svg className="h-3 w-3 text-[var(--color-accent-2)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                    </svg>
+                    <span className="text-xs font-semibold text-[var(--color-accent-2)]" style={{ fontFamily: 'var(--font-heading)', fontVariantNumeric: 'tabular-nums' }}>
+                      {result.text.length.toLocaleString()} <span className="font-normal text-[var(--color-accent-2)]/70">chars</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 rounded-md bg-[var(--color-accent-3)]/10 px-2.5 py-1">
+                    <svg className="h-3 w-3 text-[var(--color-accent-3)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-xs font-semibold text-[var(--color-accent-3)]" style={{ fontFamily: 'var(--font-heading)', fontVariantNumeric: 'tabular-nums' }}>
+                      {result.elapsed.toFixed(1)}<span className="font-normal text-[var(--color-accent-3)]/70">s</span>
+                    </span>
+                  </div>
                 </div>
               )}
             </div>

@@ -11,7 +11,7 @@ import ModelComparator from '../components/ModelComparator';
       <div class="text-center">
         <div class="animate-fade-in-up opacity-0 inline-flex items-center gap-2 rounded-full border border-border bg-bg-secondary/50 px-4 py-1.5 mb-8">
           <span class="h-2 w-2 rounded-full bg-success animate-pulse"></span>
-          <span class="text-sm text-text-secondary">Free &bull; No signup &bull; 10 AI models</span>
+          <span class="text-sm text-text-secondary">Free &bull; No signup &bull; 14 AI models</span>
         </div>
 
         <h1 class="animate-fade-in-up opacity-0 animate-delay-100 text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
@@ -86,8 +86,8 @@ import ModelComparator from '../components/ModelComparator';
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
           </svg>
         </div>
-        <h3 class="text-lg font-semibold mb-2">10 Free Models</h3>
-        <p class="text-sm text-text-secondary leading-relaxed">Gemma, Llama, Mistral, Nemotron, Qwen, Trinity, GLM and more. 10 free open-source models.</p>
+        <h3 class="text-lg font-semibold mb-2">14 Free Models</h3>
+        <p class="text-sm text-text-secondary leading-relaxed">Gemma, Llama, Mistral, Nemotron, Qwen, Trinity, GLM, Hermes, Step and more. 14 free open-source models.</p>
       </div>
     </div>
   </section>
@@ -114,6 +114,10 @@ import ModelComparator from '../components/ModelComparator';
         { name: "Llama 3.3 70B", provider: "Meta", color: "#0668E1", category: "General", params: "70B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a4.892 4.892 0 00.684 1.59c.34.473.77.856 1.31 1.104.541.249 1.199.37 1.937.37 1.166 0 2.177-.452 3.126-1.263.948-.811 1.86-2.03 2.763-3.623l.373-.658.373.658c.903 1.593 1.815 2.812 2.763 3.623.949.811 1.96 1.263 3.126 1.263.738 0 1.396-.121 1.937-.37.54-.248.97-.63 1.31-1.104.339-.472.562-1.016.684-1.59.14-.604.21-1.267.21-1.973 0-2.566-.704-5.24-2.044-7.303C17.698 5.31 15.983 4.03 14.015 4.03c-1.166 0-2.177.452-3.126 1.263-.315.27-.618.575-.909.914a10.42 10.42 0 00-.909-.914C8.122 4.482 7.111 4.03 6.915 4.03z"/></svg>` },
         { name: "Mistral Small", provider: "Mistral AI", color: "#FF7000", category: "Multilingual", params: "24B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><rect x="1" y="3" width="4" height="4"/><rect x="19" y="3" width="4" height="4"/><rect x="1" y="10" width="4" height="4"/><rect x="7" y="10" width="4" height="4"/><rect x="13" y="10" width="4" height="4"/><rect x="19" y="10" width="4" height="4"/><rect x="1" y="17" width="4" height="4"/><rect x="19" y="17" width="4" height="4"/><rect x="7" y="3" width="4" height="4" opacity="0.6"/><rect x="13" y="3" width="4" height="4" opacity="0.4"/><rect x="7" y="17" width="4" height="4" opacity="0.4"/><rect x="13" y="17" width="4" height="4" opacity="0.6"/></svg>` },
         { name: "Qwen3 Next", provider: "Alibaba", color: "#6C5CE7", category: "General", params: "80B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.58 2 10c0 2.52 1.47 4.77 3.77 6.24-.24 1.07-.78 2.66-1.77 3.76 0 0 2.6-.5 4.53-1.82.94.2 1.93.32 2.97.32 5.52 0 10-3.58 10-8s-4.48-8-10-8zm-4 9a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2z"/></svg>` },
+        { name: "Qwen3 Coder", provider: "Alibaba", color: "#9B59B6", category: "Coding", params: "480B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.58 2 10c0 2.52 1.47 4.77 3.77 6.24-.24 1.07-.78 2.66-1.77 3.76 0 0 2.6-.5 4.53-1.82.94.2 1.93.32 2.97.32 5.52 0 10-3.58 10-8s-4.48-8-10-8zm-4 9a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2zm4 0a1 1 0 110-2 1 1 0 010 2z"/></svg>` },
+        { name: "Hermes 3 405B", provider: "NousResearch", color: "#2ECC71", category: "Reasoning", params: "405B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 2a8 8 0 110 16 8 8 0 010-16zm-1 3v6l5.25 3.15.75-1.23-4.5-2.67V7h-1.5z"/></svg>` },
+        { name: "Step 3.5 Flash", provider: "StepFun", color: "#F39C12", category: "Fast", params: "", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>` },
+        { name: "GPT-OSS 120B", provider: "OpenAI", color: "#10a37f", category: "General", params: "120B", logo: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.282 9.821a5.985 5.985 0 00-.516-4.91 6.046 6.046 0 00-6.51-2.9A6.065 6.065 0 0011.05.5a6.04 6.04 0 00-5.778 4.262 6.022 6.022 0 00-4.03 2.916 6.042 6.042 0 00.748 7.091 5.98 5.98 0 00.51 4.911 6.04 6.04 0 006.516 2.9A6.06 6.06 0 0013.048 23.5a6.04 6.04 0 005.778-4.264 6.03 6.03 0 004.028-2.916 6.044 6.044 0 00-.572-6.499z"/></svg>` },
       ].map((model) => (
         <div class="model-card glass-card rounded-xl p-4 group cursor-default" style={`--card-color: ${model.color}`}>
           <div class="flex items-center gap-3 mb-3">

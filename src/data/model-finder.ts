@@ -102,6 +102,14 @@ const MODEL_SCORES: ModelScore[] = [
     scores: { writing: 5, coding: 5, analysis: 5, creative: 5, general: 6, speed: 9, quality: 4, small: 10, medium: 0, large: 0 } },
   { id: 'glm-4.5', name: 'GLM 4.5 Air', provider: 'Zhipu AI', color: '#00BCF2', isFree: true, comparatorId: 'glm',
     scores: { writing: 6, coding: 6, analysis: 6, creative: 6, general: 7, speed: 7, quality: 6, small: 0, medium: 10, large: 0 } },
+  { id: 'qwen3-coder', name: 'Qwen3 Coder 480B', provider: 'Alibaba', color: '#9B59B6', isFree: true, comparatorId: 'qwen3-coder',
+    scores: { writing: 5, coding: 10, analysis: 7, creative: 4, general: 7, speed: 4, quality: 9, small: 0, medium: 0, large: 10 } },
+  { id: 'hermes-405b', name: 'Hermes 3 405B', provider: 'NousResearch', color: '#2ECC71', isFree: true, comparatorId: 'hermes-405b',
+    scores: { writing: 8, coding: 8, analysis: 9, creative: 7, general: 8, speed: 4, quality: 9, small: 0, medium: 0, large: 10 } },
+  { id: 'step-flash', name: 'Step 3.5 Flash', provider: 'StepFun', color: '#F39C12', isFree: true, comparatorId: 'step-flash',
+    scores: { writing: 6, coding: 6, analysis: 5, creative: 6, general: 7, speed: 10, quality: 5, small: 10, medium: 0, large: 0 } },
+  { id: 'gpt-oss-120b', name: 'GPT-OSS 120B', provider: 'OpenAI', color: '#10a37f', isFree: true, comparatorId: 'gpt-oss-120b',
+    scores: { writing: 8, coding: 8, analysis: 8, creative: 7, general: 9, speed: 5, quality: 9, small: 0, medium: 0, large: 10 } },
 
   // Paid models
   { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI', color: '#10a37f', isFree: false,

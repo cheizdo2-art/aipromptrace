@@ -73,6 +73,31 @@ export function AlibabaLogo({ className = 'h-4 w-4' }: LogoProps) {
   );
 }
 
+export function NousLogo({ className = 'h-4 w-4' }: LogoProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 3a7 7 0 110 14 7 7 0 010-14zm0 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z" />
+    </svg>
+  );
+}
+
+export function StepFunLogo({ className = 'h-4 w-4' }: LogoProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M13 3l8 4.5v9L13 21l-8-4.5v-9L13 3zm0 2.25L7 8.25v7.5l6 3 6-3v-7.5l-6-3z" />
+      <path d="M13 8v8M9 12h8" />
+    </svg>
+  );
+}
+
+export function OpenAILogo({ className = 'h-4 w-4' }: LogoProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M22.282 9.821a5.985 5.985 0 00-.516-4.91 6.046 6.046 0 00-6.51-2.9A6.065 6.065 0 0011.73.44 6.04 6.04 0 005.34 2.697a5.99 5.99 0 00-4.003 2.898 6.042 6.042 0 00.734 7.093 5.98 5.98 0 00.516 4.91 6.04 6.04 0 006.51 2.899 5.99 5.99 0 004.528 2.003 6.04 6.04 0 006.39-2.257 5.99 5.99 0 004.002-2.898 6.04 6.04 0 00-.734-7.093zM12.204 22.44a4.486 4.486 0 01-2.88-1.04c.036-.02.099-.056.14-.08l4.79-2.77a.78.78 0 00.395-.678v-6.76l2.025 1.168a.07.07 0 01.039.052v5.598a4.504 4.504 0 01-4.51 4.51zm-9.686-4.13a4.474 4.474 0 01-.535-3.014c.035.021.098.06.14.084l4.79 2.77a.78.78 0 00.788 0l5.848-3.375v2.337a.072.072 0 01-.028.061l-4.842 2.796a4.504 4.504 0 01-6.16-1.658zm-1.262-10.45A4.478 4.478 0 013.61 5.13v5.676a.77.77 0 00.393.676l5.848 3.374-2.025 1.17a.072.072 0 01-.067.005L2.917 13.234A4.504 4.504 0 011.256 7.86zm16.632 3.873l-5.848-3.376 2.025-1.168a.072.072 0 01.067-.006l4.842 2.796a4.5 4.5 0 01-.697 8.115V12.5a.77.77 0 00-.389-.678zm2.014-3.028a7.108 7.108 0 00-.14-.083l-4.79-2.77a.78.78 0 00-.788 0l-5.848 3.375V7.89a.072.072 0 01.028-.061l4.842-2.794a4.5 4.5 0 016.696 4.67zm-12.66 4.166l-2.025-1.168a.07.07 0 01-.039-.052V6.054a4.5 4.5 0 017.389-3.442c-.036.02-.098.055-.14.08l-4.79 2.77a.78.78 0 00-.395.676v6.733zm1.1-2.368l2.605-1.504 2.605 1.504v3.008l-2.605 1.504-2.605-1.504V10.87z" />
+    </svg>
+  );
+}
+
 const PROVIDER_LOGOS: Record<string, React.FC<LogoProps>> = {
   'Google': GoogleLogo,
   'NVIDIA': NvidiaLogo,
@@ -82,6 +107,9 @@ const PROVIDER_LOGOS: Record<string, React.FC<LogoProps>> = {
   'Mistral': MistralLogo,
   'Mistral AI': MistralLogo,
   'Alibaba': AlibabaLogo,
+  'NousResearch': NousLogo,
+  'StepFun': StepFunLogo,
+  'OpenAI': OpenAILogo,
 };
 
 export function ProviderLogo({ provider, className = 'h-4 w-4' }: { provider: string; className?: string }) {

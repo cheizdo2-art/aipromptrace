@@ -47,4 +47,8 @@ export const PRICING_MODELS: PricingModel[] = [
   { id: 'llama-3.3-70b-free', name: 'Llama 3.3 70B', provider: 'Meta', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#0668E1' },
   { id: 'mistral-small-24b', name: 'Mistral Small 24B', provider: 'Mistral', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#FF7000' },
   { id: 'qwen3-80b', name: 'Qwen3 Next 80B', provider: 'Alibaba', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#6C5CE7' },
+  { id: 'qwen3-coder', name: 'Qwen3 Coder 480B', provider: 'Alibaba', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#9B59B6' },
+  { id: 'hermes-405b', name: 'Hermes 3 405B', provider: 'NousResearch', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#2ECC71' },
+  { id: 'step-flash', name: 'Step 3.5 Flash', provider: 'StepFun', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#F39C12' },
+  { id: 'gpt-oss-120b', name: 'GPT-OSS 120B', provider: 'OpenAI', inputPricePerMillion: 0, outputPricePerMillion: 0, isFree: true, contextWindow: 128000, category: 'free', color: '#10a37f' },
 ];
