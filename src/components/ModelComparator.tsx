@@ -234,33 +234,36 @@ export default function ModelComparator() {
         <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-3">
           Select Models <span className="text-[var(--color-text-muted)]">({selectedModels.length}/4 selected — min 2)</span>
         </label>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+        <div className="grid grid-cols-3 gap-3">
           {AVAILABLE_MODELS.map(model => {
             const isSelected = selectedModels.includes(model.id);
             return (
               <button
                 key={model.id}
                 onClick={() => toggleModel(model.id)}
-                className={`model-card relative flex items-center gap-2.5 rounded-lg border p-3 text-left ${
+                className={`model-card relative flex items-center gap-3 rounded-xl border p-3.5 text-left transition-all ${
                   isSelected
-                    ? 'border-[var(--color-accent)] bg-[var(--color-accent)]/10 shadow-[0_0_12px_rgba(99,102,241,0.15)]'
+                    ? 'shadow-[0_0_16px_rgba(99,102,241,0.2)]'
                     : 'border-[var(--color-border)] bg-[var(--color-bg-primary)]/30 hover:border-[var(--color-text-muted)]'
                 }`}
-                style={isSelected ? {} : { ['--hover-glow' as string]: model.color }}
+                style={isSelected
+                  ? { borderColor: model.color, background: `${model.color}12` }
+                  : { ['--hover-glow' as string]: model.color }
+                }
               >
                 {isSelected && (
-                  <div className="absolute top-1.5 right-1.5 h-4 w-4 rounded-full bg-[var(--color-accent)] flex items-center justify-center">
-                    <svg className="h-2.5 w-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <div className="absolute top-2 right-2 h-5 w-5 rounded-full flex items-center justify-center" style={{ background: model.color }}>
+                    <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                 )}
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md" style={{ background: `${model.color}15` }}>
-                  <ProviderLogo provider={model.provider} className="h-4 w-4" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg" style={{ background: `${model.color}25`, color: model.color }}>
+                  <ProviderLogo provider={model.provider} className="h-5 w-5" />
                 </div>
                 <div className="min-w-0">
-                  <span className="block text-xs font-semibold text-[var(--color-text-primary)] truncate" style={{ fontFamily: 'var(--font-heading)' }}>{model.name}</span>
-                  <span className="block text-[10px] text-[var(--color-text-muted)]">{model.provider}</span>
+                  <span className="block text-sm font-bold truncate" style={{ fontFamily: 'var(--font-heading)', color: model.color }}>{model.name}</span>
+                  <span className="block text-xs text-[var(--color-text-secondary)]">{model.provider}</span>
                 </div>
               </button>
             );
