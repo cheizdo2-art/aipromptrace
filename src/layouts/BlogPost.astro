@@ -25,6 +25,34 @@ const categoryColors: Record<string, string> = {
 ---
 
 <Layout title={`${title} — AI Prompt Race`} description={description} canonical={`/blog/${Astro.url.pathname.split('/').pop()}`}>
+  <!-- Schema.org Article -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "datePublished": date.toISOString(),
+    "dateModified": (updated || date).toISOString(),
+    "author": {
+      "@type": "Person",
+      "name": author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AI Prompt Race",
+      "url": "https://aipromptrace.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://aipromptrace.com/favicon.svg"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://aipromptrace.com/blog/${Astro.url.pathname.split('/').pop()}`
+    },
+    "keywords": tags.join(", ")
+  })} />
+
   <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
     <!-- Breadcrumb -->
     <nav class="mb-8 text-sm text-text-muted">
