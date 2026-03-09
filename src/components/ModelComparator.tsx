@@ -36,7 +36,15 @@ export default function ModelComparator() {
   const [isRunning, setIsRunning] = useState(false);
   const [rateLimited, setRateLimited] = useState(false);
   const [raceCount, setRaceCount] = useState(0);
+  const [showBattle, setShowBattle] = useState(false);
   const abortRef = useRef<AbortController[]>([]);
+
+  // Show BlindBattle when all results are done and at least 2 have text
+  useEffect(() => {
+    if (results.length >= 2 && results.every(r => r.done) && results.filter(r => r.text).length >= 2) {
+      setShowBattle(true);
+    }
+  }, [results]);
 
   // Read URL params for deep-linking from other tools
   useEffect(() => {
@@ -146,13 +154,13 @@ export default function ModelComparator() {
         const next = [...prev];
         if (next[index]) {
           const finalElapsed = (Date.now() - startTime) / 1000;
-      const finalTokens = next[index].text.length / 4;
-      next[index] = {
-        ...next[index],
-        done: true,
-        elapsed: finalElapsed,
-        tokensPerSec: finalElapsed > 0.1 ? Math.round(finalTokens / finalElapsed) : 0,
-      };
+          const finalTokens = next[index].text.length / 4;
+          next[index] = {
+            ...next[index],
+            done: true,
+            elapsed: finalElapsed,
+            tokensPerSec: finalElapsed > 0.1 ? Math.round(finalTokens / finalElapsed) : 0,
+          };
         }
         return next;
       });
@@ -185,6 +193,7 @@ export default function ModelComparator() {
 
     setIsRunning(true);
     setRaceCount(c => c + 1);
+    setShowBattle(false);
     setResults(models.map(model => ({
       model,
       text: '',
@@ -427,8 +436,8 @@ export default function ModelComparator() {
         </div>
       )}
 
-      {/* Blind Battle — appears when all models done and at least 2 have text */}
-      {!isRunning && results.length >= 2 && results.every(r => r.done) && results.filter(r => r.text).length >= 2 && (
+      {/* Blind Battle — appears when all results done and at least 2 have text */}
+      {showBattle && (
         <BlindBattle key={raceCount} results={results} />
       )}
     </div>

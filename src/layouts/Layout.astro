@@ -55,6 +55,30 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
     <meta name="twitter:description" content={description} />
 
     <title>{title}</title>
+
+    <!-- Schema.org Organization -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "AI Prompt Race",
+      "url": "https://aipromptrace.com",
+      "logo": "https://aipromptrace.com/favicon.svg",
+      "sameAs": []
+    })} />
+
+    <!-- Schema.org WebSite with SearchAction -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "AI Prompt Race",
+      "url": "https://aipromptrace.com",
+      "description": description,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://aipromptrace.com/tools/prompt-library?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    })} />
   </head>
   <body class="min-h-screen bg-bg-primary text-text-primary antialiased">
     <nav class="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-primary/80 backdrop-blur-xl">

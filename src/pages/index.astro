@@ -4,6 +4,55 @@ import ModelComparator from '../components/ModelComparator';
 ---
 
 <Layout title="AI Prompt Race — Compare AI Models Side-by-Side for Free">
+  <!-- Schema.org SoftwareApplication -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "AI Prompt Race",
+    "description": "Free AI model comparison tool. Test prompts across multiple AI models side-by-side in real time.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web-based",
+    "url": "https://aipromptrace.com",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Side-by-side AI model comparison",
+      "Real-time streaming responses",
+      "6 free open-source AI models",
+      "No signup required",
+      "AI pricing calculator",
+      "AI model finder quiz",
+      "Prompt template library"
+    ]
+  })} />
+
+  <!-- Schema.org FAQPage -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does AI Prompt Race work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Type a prompt, select 2-4 AI models, and see their responses streaming side-by-side in real time. Compare quality, speed, and style instantly." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is AI Prompt Race free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free. No signup, no API keys, no credit cards required. You get 200 free comparisons per day." }
+      },
+      {
+        "@type": "Question",
+        "name": "What AI models can I compare?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You can compare 6 free open-source models: Gemma 3 12B (Google), Nemotron 30B and 9B (NVIDIA), Trinity Large 400B and Trinity Mini (Arcee AI), and GLM 4.5 Air (Zhipu AI)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which free AI model is the best?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends on your task. Trinity Large 400B is best for complex reasoning, Nemotron 30B for balanced quality, Gemma 3 12B and Nemotron 9B for speed, and GLM 4.5 Air for multilingual and agent tasks." }
+      }
+    ]
+  })} />
+
   <!-- Hero Section -->
   <section class="relative overflow-hidden bg-radial-glow">
     <div class="bg-grid absolute inset-0"></div>
