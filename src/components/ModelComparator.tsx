@@ -25,6 +25,7 @@ interface ModelResult {
   error: string | null;
   startTime: number;
   elapsed: number;
+  tokensPerSec: number;
 }
 
 export default function ModelComparator() {
@@ -64,7 +65,7 @@ export default function ModelComparator() {
 
     setResults(prev => {
       const next = [...prev];
-      next[index] = { model, text: '', done: false, error: null, startTime, elapsed: 0 };
+      next[index] = { model, text: '', done: false, error: null, startTime, elapsed: 0, tokensPerSec: 0 };
       return next;
     });
 
@@ -120,10 +121,14 @@ export default function ModelComparator() {
               setResults(prev => {
                 const next = [...prev];
                 if (next[index]) {
+                  const newText = next[index].text + token;
+                  const elapsed = (Date.now() - startTime) / 1000;
+                  const approxTokens = newText.length / 4;
                   next[index] = {
                     ...next[index],
-                    text: next[index].text + token,
-                    elapsed: (Date.now() - startTime) / 1000,
+                    text: newText,
+                    elapsed,
+                    tokensPerSec: elapsed > 0.1 ? Math.round(approxTokens / elapsed) : 0,
                   };
                 }
                 return next;
@@ -138,7 +143,14 @@ export default function ModelComparator() {
       setResults(prev => {
         const next = [...prev];
         if (next[index]) {
-          next[index] = { ...next[index], done: true, elapsed: (Date.now() - startTime) / 1000 };
+          const finalElapsed = (Date.now() - startTime) / 1000;
+      const finalTokens = next[index].text.length / 4;
+      next[index] = {
+        ...next[index],
+        done: true,
+        elapsed: finalElapsed,
+        tokensPerSec: finalElapsed > 0.1 ? Math.round(finalTokens / finalElapsed) : 0,
+      };
         }
         return next;
       });
@@ -177,6 +189,7 @@ export default function ModelComparator() {
       error: null,
       startTime: Date.now(),
       elapsed: 0,
+      tokensPerSec: 0,
     })));
 
     await Promise.all(models.map((model, i) => streamModel(model, prompt.trim(), i, controllers[i])));
@@ -320,6 +333,28 @@ export default function ModelComparator() {
                 )}
               </div>
 
+              {/* Speedometer bar — visible while generating and after done */}
+              {(result.text || result.done) && !result.error && result.tokensPerSec > 0 && (
+                <div className="mb-3">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs text-[var(--color-text-muted)]">Speed</span>
+                    <span className="text-xs font-bold font-mono" style={{ color: result.model.color }}>
+                      {result.tokensPerSec} <span className="font-normal opacity-70">tok/s</span>
+                    </span>
+                  </div>
+                  <div className="h-1.5 w-full rounded-full bg-[var(--color-border)] overflow-hidden">
+                    <div
+                      className="h-full rounded-full transition-all duration-300"
+                      style={{
+                        background: result.model.color,
+                        width: `${Math.min(100, (result.tokensPerSec / 120) * 100)}%`,
+                        opacity: result.done ? 1 : 0.75,
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+
               {/* Body */}
               <div className="flex-1 min-h-[120px] max-h-[400px] overflow-y-auto">
                 {result.error ? (
@@ -372,6 +407,16 @@ export default function ModelComparator() {
                       {result.elapsed.toFixed(1)}<span className="font-normal text-[var(--color-accent-3)]/70">s</span>
                     </span>
                   </div>
+                  {result.tokensPerSec > 0 && (
+                    <div className="flex items-center gap-1.5 rounded-md px-2.5 py-1" style={{ background: `${result.model.color}15` }}>
+                      <svg className="h-3 w-3" style={{ color: result.model.color }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      <span className="text-xs font-semibold font-mono" style={{ color: result.model.color }}>
+                        {result.tokensPerSec}<span className="font-normal opacity-70"> t/s</span>
+                      </span>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
