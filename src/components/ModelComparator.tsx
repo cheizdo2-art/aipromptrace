@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { ProviderLogo } from './ProviderLogos';
+import BlindBattle from './BlindBattle';
 
 interface Model {
   id: string;
@@ -310,7 +311,7 @@ export default function ModelComparator() {
 
       {/* Results */}
       {results.length > 0 && (
-        <div className={`mt-8 grid gap-4 ${results.length <= 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-2'}`}>
+        <div className={`mt-8 grid gap-4 grid-cols-1 md:grid-cols-2`}>
           {results.map((result, i) => (
             <div
               key={result.model.id}
@@ -422,6 +423,11 @@ export default function ModelComparator() {
             </div>
           ))}
         </div>
+      )}
+
+      {/* Blind Battle — appears when all models done and at least 2 have text */}
+      {!isRunning && results.length >= 2 && results.every(r => r.done) && results.filter(r => r.text).length >= 2 && (
+        <BlindBattle key={results.map(r => r.model.id).join('-') + results.map(r => r.text.slice(0, 10)).join('')} results={results} />
       )}
     </div>
   );
