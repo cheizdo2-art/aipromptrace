@@ -35,6 +35,7 @@ export default function ModelComparator() {
   const [results, setResults] = useState<ModelResult[]>([]);
   const [isRunning, setIsRunning] = useState(false);
   const [rateLimited, setRateLimited] = useState(false);
+  const [raceCount, setRaceCount] = useState(0);
   const abortRef = useRef<AbortController[]>([]);
 
   // Read URL params for deep-linking from other tools
@@ -183,6 +184,7 @@ export default function ModelComparator() {
     abortRef.current = controllers;
 
     setIsRunning(true);
+    setRaceCount(c => c + 1);
     setResults(models.map(model => ({
       model,
       text: '',
@@ -427,7 +429,7 @@ export default function ModelComparator() {
 
       {/* Blind Battle — appears when all models done and at least 2 have text */}
       {!isRunning && results.length >= 2 && results.every(r => r.done) && results.filter(r => r.text).length >= 2 && (
-        <BlindBattle key={results.map(r => r.model.id).join('-') + results.map(r => r.text.slice(0, 10)).join('')} results={results} />
+        <BlindBattle key={raceCount} results={results} />
       )}
     </div>
   );
