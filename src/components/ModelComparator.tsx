@@ -39,12 +39,12 @@ export default function ModelComparator() {
   const [showBattle, setShowBattle] = useState(false);
   const abortRef = useRef<AbortController[]>([]);
 
-  // Show BlindBattle when all results are done and at least 2 have text
+  // Show BlindBattle when race finishes (not running) and at least 2 results have text
   useEffect(() => {
-    if (results.length >= 2 && results.every(r => r.done) && results.filter(r => r.text).length >= 2) {
+    if (!isRunning && results.length >= 2 && results.every(r => r.done) && results.filter(r => r.text).length >= 2) {
       setShowBattle(true);
     }
-  }, [results]);
+  }, [isRunning, results]);
 
   // Read URL params for deep-linking from other tools
   useEffect(() => {
