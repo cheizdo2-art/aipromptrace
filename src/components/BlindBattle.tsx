@@ -35,7 +35,7 @@ function shuffle<T>(arr: T[]): T[] {
 const LABELS = ['A', 'B', 'C', 'D'];
 
 export default function BlindBattle({ results }: Props) {
-  const [shuffled] = useState(() => shuffle(results.filter(r => r.text && !('error' in r))));
+  const [shuffled] = useState(() => shuffle(results.filter(r => r.text && !r.error)));
   const [voted, setVoted] = useState<string | null>(null); // modelId or 'tie'
   const [revealed, setRevealed] = useState(false);
   const [voteData, setVoteData] = useState<VoteData | null>(null);
