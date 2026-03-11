@@ -36,15 +36,10 @@ export default function ModelComparator() {
   const [isRunning, setIsRunning] = useState(false);
   const [rateLimited, setRateLimited] = useState(false);
   const [raceCount, setRaceCount] = useState(0);
-  const [showBattle, setShowBattle] = useState(false);
   const abortRef = useRef<AbortController[]>([]);
 
-  // Show BlindBattle when race finishes (not running) and at least 2 results have text
-  useEffect(() => {
-    if (!isRunning && results.length >= 2 && results.every(r => r.done) && results.filter(r => r.text).length >= 2) {
-      setShowBattle(true);
-    }
-  }, [isRunning, results]);
+  // Compute showBattle directly — no useEffect needed
+  const showBattleNow = !isRunning && results.length >= 2 && results.every(r => r.done) && results.filter(r => r.text).length >= 2;
 
   // Read URL params for deep-linking from other tools
   useEffect(() => {
@@ -193,7 +188,6 @@ export default function ModelComparator() {
 
     setIsRunning(true);
     setRaceCount(c => c + 1);
-    setShowBattle(false);
     setResults(models.map(model => ({
       model,
       text: '',
@@ -437,7 +431,7 @@ export default function ModelComparator() {
       )}
 
       {/* Blind Battle — appears when all results done and at least 2 have text */}
-      {showBattle && (
+      {showBattleNow && (
         <BlindBattle key={raceCount} results={results} />
       )}
     </div>
