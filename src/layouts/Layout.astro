@@ -25,22 +25,15 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-60KEWNKCFM"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-60KEWNKCFM');
-    </script>
-
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Preload fonts -->
+    <!-- Preload critical font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" /></noscript>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -81,7 +74,7 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
     })} />
   </head>
   <body class="min-h-screen bg-bg-primary text-text-primary antialiased">
-    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-primary/80 backdrop-blur-xl">
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-primary/95 backdrop-blur-sm">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
           <a href="/" class="flex items-center gap-2">
@@ -177,5 +170,21 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
         </div>
       </div>
     </footer>
+
+    <!-- Google Analytics — deferred to not block LCP -->
+    <script>
+      window.addEventListener('load', function() {
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-60KEWNKCFM';
+        s.async = true;
+        document.head.appendChild(s);
+        s.onload = function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-60KEWNKCFM');
+        };
+      });
+    </script>
   </body>
 </html>
