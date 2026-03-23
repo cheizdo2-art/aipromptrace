@@ -5,16 +5,19 @@ interface Props {
   title: string;
   description?: string;
   canonical?: string;
+  ogImage?: string;
 }
 
 const {
   title,
   description = "Compare AI models side-by-side for free. Test prompts across Gemma, Nemotron, Trinity, GLM and 6 free AI models instantly. No signup required.",
-  canonical
+  canonical,
+  ogImage
 } = Astro.props;
 
 const siteUrl = "https://aipromptrace.com";
 const canonicalUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
+const ogImageUrl = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/og-default.png`;
 ---
 
 <!doctype html>
@@ -41,11 +44,15 @@ const canonicalUrl = canonical ? `${siteUrl}${canonical}` : siteUrl;
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="AI Prompt Race" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <title>{title}</title>
 
