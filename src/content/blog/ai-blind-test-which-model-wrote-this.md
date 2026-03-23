@@ -2,7 +2,7 @@
 title: "AI Blind Test: Can You Tell Which Model Wrote This?"
 description: "I hid the model names and asked people to pick the best AI response. Most couldn't tell free models from paid ones. Here's what happened — and what it means."
 date: 2026-03-14
-category: experiments
+category: guides
 tags: ["ai blind test", "blind comparison ai", "best ai model", "chatgpt vs free ai", "ai voting", "which ai is best"]
 author: "AI Prompt Race Team"
 ---
